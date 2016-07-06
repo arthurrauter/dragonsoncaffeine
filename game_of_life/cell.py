@@ -4,21 +4,21 @@ class Cell:
 		self.neighbours = neighbours
 
 	def regenerate(self):
-		#count alive neighbours
-		alive_neighbours = 0
+		#count live neighbours
+		live_neighbours = 0
 		for cell in self.neighbours:
 			if cell == 1:
-				alive_neighbours += 1
+				live_neighbours += 1
 		
-		if self.state == 'alive':
-			if alive_neighbours < 2:
+		if self.state == 'live':
+			if live_neighbours < 2:
 				self.state = 'dead'
 				print "so lonely..."
-			if alive_neighbours > 3:
+			if live_neighbours > 3:
 				self.state = 'dead'
 				print "overcrowded!"
 		else:
-			if alive_neighbours == 3:
-				self.state = 'alive'
+			if live_neighbours == 3:
+				self.state = 'live'
 				print "the miracle of life"
 
