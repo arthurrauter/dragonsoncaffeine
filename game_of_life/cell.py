@@ -13,12 +13,12 @@ class Cell:
 		if self.state == 'live':
 			if live_neighbours < 2:
 				self.state = 'dead'
-				print "so lonely..."
+				#print "so lonely..."
 			if live_neighbours > 3:
 				self.state = 'dead'
-				print "overcrowded!"
+				#print "overcrowded!"
 		else:
 			if live_neighbours == 3:
 				self.state = 'live'
-				print "the miracle of life"
+				#print "the miracle of life"
 
