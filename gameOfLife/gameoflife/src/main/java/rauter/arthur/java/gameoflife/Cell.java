@@ -4,11 +4,10 @@ package rauter.arthur.java.gameoflife;
 import java.util.List;
 
 public class Cell {
+
     private List<Cell> adjacentCells;
     private boolean alive;
     private boolean willSurvive;
-
-    public Cell() {}
 
     public Cell(boolean alive){
         this.alive = alive;

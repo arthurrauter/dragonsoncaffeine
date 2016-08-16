@@ -1,6 +1,9 @@
 package rauter.arthur.java.gameoflife;
 //arthurrauter on 15/08/16.
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Utilities {
 
     static boolean ttttt = true;
@@ -24,6 +27,27 @@ public class Utilities {
             }
             System.out.println();
         }
+    }
+
+    public static List<Cell> generateCells(int amount, boolean allAlive) {
+        if (allAlive)
+            return generateCells(amount, amount);
+        else
+            return generateCells(amount, 0);
+    }
+
+    public static List<Cell> generateCells(int amount, int alive) {
+        List<Cell> cells = new ArrayList<>();
+
+        for (int i = 0; i < alive; i++) {
+            cells.add(new Cell(true));
+        }
+
+        for (int i = alive; i < amount; i++) {
+            cells.add(new Cell(false));
+        }
+
+        return cells;
     }
 
 }

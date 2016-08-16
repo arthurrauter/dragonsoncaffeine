@@ -52,7 +52,7 @@ public class CellTester {
     @Test
     public void deathByOverpop() {
         Cell cell = new Cell(true);
-        cell.setAdjacentCells(generate8Cells(true));
+        cell.setAdjacentCells(Utilities.generateCells(8,true));
         cell.tick();
         cell.tack();
         Assert.assertEquals(false, cell.isAlive());
@@ -61,7 +61,7 @@ public class CellTester {
     @Test
     public void deathByLoneliness() {
         Cell cell = new Cell(true);
-        cell.setAdjacentCells(generate8Cells(false));
+        cell.setAdjacentCells(Utilities.generateCells(8,false));
         cell.tick();
         cell.tack();
         Assert.assertEquals(false, cell.isAlive());
@@ -70,7 +70,7 @@ public class CellTester {
     @Test
     public void reproduction() {
         Cell cell = new Cell(false);
-        cell.setAdjacentCells(generate8Cells(3));
+        cell.setAdjacentCells(Utilities.generateCells(8,3));
         cell.tick();
         cell.tack();
         Assert.assertEquals(true, cell.isAlive());
@@ -79,7 +79,7 @@ public class CellTester {
     @Test
     public void deathByOverpopEdge() {
         Cell cell = new Cell(true);
-        cell.setAdjacentCells(generate8Cells(4));
+        cell.setAdjacentCells(Utilities.generateCells(8,4));
         cell.tick();
         cell.tack();
         Assert.assertEquals(false, cell.isAlive());
@@ -88,30 +88,12 @@ public class CellTester {
     @Test
     public void deathByLonelinessEdge() {
         Cell cell = new Cell(true);
-        cell.setAdjacentCells(generate8Cells(1));
+        cell.setAdjacentCells(Utilities.generateCells(8,1));
         cell.tick();
         cell.tack();
         Assert.assertEquals(false, cell.isAlive());
     }
 
-    private List<Cell> generate8Cells(boolean allAlive) {
-        List<Cell> listOfCells = new ArrayList<>();
-        for (int i = 8; i > 0; i--) {
-            listOfCells.add(new Cell(allAlive));
-        }
-        return listOfCells;
-    }
-
-    private List<Cell> generate8Cells(int alive) {
-        List<Cell> cells = new ArrayList<>();
-        for (int i = 0; i < alive; i++) {
-            cells.add(new Cell(true));
-        }
-        for (int i = alive; i < 8; i++) {
-            cells.add(new Cell(false));
-        }
-        return cells;
-    }
 
     public void multipleTickTacks(boolean trueForTick, Cell cell) {
         boolean cellStartingState = cell.isAlive();
@@ -128,7 +110,7 @@ public class CellTester {
     @Test
     public void multipleTicks() {
         Cell c = new Cell(true);
-        c.setAdjacentCells(generate8Cells(6));
+        c.setAdjacentCells(Utilities.generateCells(8,6));
 
         multipleTickTacks(true, c);
 
@@ -140,7 +122,7 @@ public class CellTester {
     @Test
     public void multipleTacks() {
         Cell c = new Cell(true);
-        c.setAdjacentCells(generate8Cells(6));
+        c.setAdjacentCells(Utilities.generateCells(8,6));
 
         multipleTickTacks(false, c);
 
