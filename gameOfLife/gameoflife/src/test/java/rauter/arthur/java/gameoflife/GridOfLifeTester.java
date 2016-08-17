@@ -39,13 +39,39 @@ public class GridOfLifeTester {
         Assert.assertEquals("2-3 should be alive", m[2][3].isAlive(), true);
         Assert.assertEquals("2-3 should have 1 alive neighbours", 1, m[2][3].countAliveAdjacentCells());
 
+        boolean living = true;
+
+        for (int i = 0; i < 2000; i++) {
+
+            oscillator.nextGeneration();
+            //central cell is always alive
+            Assert.assertEquals(m[2][2].isAlive(), true);
+
+            //adjacent cells in x
+            Assert.assertEquals(m[2][1].isAlive(), !living);
+            Assert.assertEquals(m[2][3].isAlive(), !living);
+            //adjacent cells in y
+            Assert.assertEquals(m[1][2].isAlive(), living);
+            Assert.assertEquals(m[3][2].isAlive(), living);
+
+            //everything else has to be dead
+            for (int y = 0; y < m.length; y++) {
+                for (int x = 0; x < m[y].length; x++) {
+                    if (!((x == 2 && (y == 2 || y == 1 || y == 3) || (y == 2 && (x == 1 || x == 3))))) {
+                        Assert.assertEquals("x " + x + " y " + y, false, m[y][x].isAlive());
+                    }
+                }
+            }
+
+            living = !living;
+        }
+
     }
 
     @Test
-    public void createCells() {
+    public void instantiateCells() {
         boolean startingMatrix[][] = Utilities.oscillator;
         GridOfLife gridOfLife = new GridOfLife(startingMatrix);
-        gridOfLife.instantiateCells(startingMatrix);
 
         for (int y = 0; y < startingMatrix.length; y++) {
             for (int x = 0; x < startingMatrix[y].length; x++) {
@@ -58,10 +84,10 @@ public class GridOfLifeTester {
     }
 
     @Test
-    public void createCellCallBackMadness() {
+    public void createCellsWithCallBack() {
         boolean startingMatrix[][] = Utilities.oscillator;
         GridOfLife gridOfLife = new GridOfLife(startingMatrix);
-        gridOfLife.cbCreateCellsOnGrid(startingMatrix);
+        gridOfLife.instantiateCells2(startingMatrix);
 
         for (int y = 0; y < startingMatrix.length; y++) {
             for (int x = 0; x < startingMatrix[y].length; x++) {
