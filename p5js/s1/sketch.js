@@ -1,11 +1,11 @@
 //Random Walker
 var BALLS = [];
 var CRAZYBALLS = [];
-var STROKEBALLS = 1;
+var STROKEBALLS = 0;
 var STROKETEXT = 20;
 
 function setup() {
-	createCanvas(windowHeight, windowWidth);
+	createCanvas(windowWidth, windowHeight);
 
 	for (var i=0; i<1000; i++) {
 		BALLS[i] = new Ball();
@@ -22,8 +22,7 @@ function draw() {
 	stroke(0);
 	strokeWeight(STROKETEXT);
 	textAlign(CENTER);
-	text("WELCOME TO THE LOUVRE", width/2, height/2);
-	text("HAVE SOME BALLS!", width/2, height/2+60);
+	text("THIS PAGE WAS NOT FOUND", width/2, height/2);
 	for (var i=0; i<CRAZYBALLS.length; i++) {
 		CRAZYBALLS[i].update();
 		CRAZYBALLS[i].draw();
@@ -40,7 +39,7 @@ function CrazyBall() {
 	this.reset = function() {
 		this.size = 10;
 		this.color = [random(255), random(255), random(255)];
-		this.pos = createVector(height/4, width/4);
+		this.pos = createVector(width/4, height/4);
 		this.vel = createVector(0,0);
 		this.acel = createVector(0,0);
 	}
@@ -59,7 +58,7 @@ function CrazyBall() {
 
 	this.draw = function() {
 		fill(this.color);
-		text("LOL", this.pos.x, this.pos.y);
+		text("404", this.pos.x, this.pos.y);
 	}
 }
 
@@ -68,7 +67,7 @@ function Ball() {
 	this.reset = function() {
 		this.size = 20;
 		this.color = [random(255), random(255), random(255)];
-		this.pos = createVector(height/4, width/4);
+		this.pos = createVector(width/4, height/4);
 		this.vel = createVector(0,0);
 		this.acel = createVector(random(-1,1), random(-1,1));
 		this.acel.setMag(0.1);
