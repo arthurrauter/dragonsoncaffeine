@@ -1,6 +1,8 @@
 //Random Walker
 var BALLS = [];
 var CRAZYBALLS = [];
+var STROKEBALLS = 1;
+var STROKETEXT = 20;
 
 function setup() {
 	createCanvas(windowHeight, windowWidth);
@@ -18,15 +20,15 @@ function setup() {
 function draw() {
 	textSize(60);
 	stroke(0);
-	strokeWeight(20);
+	strokeWeight(STROKETEXT);
 	textAlign(CENTER);
 	text("WELCOME TO THE LOUVRE", width/2, height/2);
 	text("HAVE SOME BALLS!", width/2, height/2+60);
-	strokeWeight(0);
 	for (var i=0; i<CRAZYBALLS.length; i++) {
 		CRAZYBALLS[i].update();
 		CRAZYBALLS[i].draw();
 	}
+	strokeWeight(random(STROKEBALLS));
 	for (var i=0; i<BALLS.length; i++) {
 		BALLS[i].update();
 		BALLS[i].draw();
@@ -57,9 +59,7 @@ function CrazyBall() {
 
 	this.draw = function() {
 		fill(this.color);
-        strokeWeight(20);
 		text("LOL", this.pos.x, this.pos.y);
-        strokeWeight(0);
 	}
 }
 
