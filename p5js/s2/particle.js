@@ -43,13 +43,13 @@ this.update = function() {
     this.force = createVector(0,0);
 };
 
+var jitter = 0.5;
 this.draw = function() {
     stroke(0);
     strokeWeight(1);
+    noStroke();
     fill(this.color);
-    ellipse(this.pos.x, this.pos.y, this.size, this.size);
+    ellipse(this.pos.x + jitter, this.pos.y + jitter, this.size, this.size);
+    jitter *= -1;
 };
-
-    
-
 }

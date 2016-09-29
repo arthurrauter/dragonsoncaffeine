@@ -1,6 +1,7 @@
 var Attractor = function(particle, gravitationalConstant) {
     this.G = gravitationalConstant;
     this.particle = particle;
+    this.initialSize = particle.size;
     this.lastr;
 
     
@@ -24,7 +25,12 @@ var Attractor = function(particle, gravitationalConstant) {
         this.particle.update();
     }
 
+    this.wiggle = -1;
     this.draw = function() {
+        this.particle.size += this.wiggle;
+        if (this.particle.size <= 0 || this.particle.size >= this.initialSize) {
+            this.wiggle *= -1;
+        }
         this.particle.draw();
     }
 }
