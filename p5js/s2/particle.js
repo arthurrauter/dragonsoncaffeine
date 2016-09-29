@@ -13,13 +13,25 @@ this.applyForce = function(force) {
     this.force.add(force);
 };
 
-this.checkEdges = function() {
+this.bounceOnEdge = function() {
     if (this.pos.x + this.size/2 >= width || this.pos.x - this.size/2 <= 0) {
         this.vel.x *= -1;
+        if (this.pos.x + this.size/2 >= width) {
+           this.pos.x = width - this.size/2; 
+        }
+        if (this.pos.x - this.size/2 <= 0) {
+           this.pos.x = 0 + this.size/2; 
+        }
     }
 
-    if (this.pos.y + this.size/2 >= width || this.pos.y - this.size/2 <= 0) {
+    if (this.pos.y + this.size/2 >= height || this.pos.y - this.size/2 <= 0) {
         this.vel.y *= -1;
+        if (this.pos.y + this.size/2 >= height) {
+           this.pos.y = height - this.size/2; 
+        }
+        if (this.pos.y - this.size/2 <= 0) {
+           this.pos.y = 0 + this.size/2; 
+        }
     }
 };
 
