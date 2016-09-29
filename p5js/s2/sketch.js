@@ -18,20 +18,30 @@ function setup() {
     attractorCore.size = (100);
     attractorCore.mass = (100);
 
-    attractor = new Attractor(attractorCore, 2);
+    attractor = new Attractor(attractorCore, 0.02);
 }
 
 var k;
+var v;
+var e;
 function draw() {
     background(255);
+    attractor.update();
+    attractor.particle.bounceOnEdge();
     attractor.draw();
+    k = 0;
+    e = 0;
     for (var i = 0; i < N; i++) {
         attractor.pull(particles[i]);
         particles[i].update();
         particles[i].bounceOnEdge();
         particles[i].draw();
-        k += particles[i].vel.mag();
+        v = particles[i].vel.mag();
+        var k = (particles[i].mass * (v * v))/2
+        var e = (attractor.particle.mass * particles[i].mass * attractor.G)/attractor.lastr;
+        var totalE = k + e
+        console.log("p", i, " ", totalE);
     }
-    console.log(k);
-    k = 0;
+   // console.log(k);
+   // console.log(e);
 }
